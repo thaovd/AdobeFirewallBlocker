@@ -1,0 +1,72 @@
+#include <windows.h>
+
+// Define control IDs - same as in mainwindow.h
+#define IDC_SOFTWARE_LIST             1001
+#define IDC_SCAN_BUTTON               1002
+#define IDC_BLOCK_BUTTON              1003
+#define IDC_UNBLOCK_BUTTON            1004
+#define IDC_SELECT_ALL_BUTTON         1005
+#define IDC_UNSELECT_ALL_BUTTON       1006
+#define IDC_INBOUND_CHECK             1007
+#define IDC_OUTBOUND_CHECK            1008
+#define IDC_TITLE_LABEL               1009
+#define IDC_PROGRESS_BAR              1010
+#define IDC_STATUS_LABEL              1011
+#define IDI_APP_ICON                  2000
+#define IDD_MAIN_DIALOG               3000
+
+// Icon resource
+IDI_APP_ICON ICON "resources\\app.ico"
+
+// Version information
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904b0"
+        BEGIN
+            VALUE "CompanyName", "Vuthao.id.vn"
+            VALUE "FileDescription", "Adobe Firewall Blocker - vuthao.id.vn"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "AdobeFirewallBlocker.exe"
+            VALUE "LegalCopyright", "Copyright (C) 2024"
+            VALUE "OriginalFilename", "AdobeFirewallBlocker.exe"
+            VALUE "ProductName", "Adobe Firewall Blocker - vuthao.id.vn"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+// Dialog resources
+IDD_MAIN_DIALOG DIALOGEX 0, 0, 400, 300
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX
+CAPTION "Adobe Firewall Blocker - vuthao.id.vn"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "", IDC_SOFTWARE_LIST, "SysListView32", LVS_REPORT | LVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP, 7, 25, 386, 180
+    PUSHBUTTON      "Scan for Adobe Software", IDC_SCAN_BUTTON, 7, 215, 120, 14
+    PUSHBUTTON      "Block Selected", IDC_BLOCK_BUTTON, 135, 215, 80, 14
+    PUSHBUTTON      "Unblock Selected", IDC_UNBLOCK_BUTTON, 225, 215, 80, 14
+    PUSHBUTTON      "Select All", IDC_SELECT_ALL_BUTTON, 315, 215, 80, 14
+    CONTROL         "Inbound Rules", IDC_INBOUND_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 10, 235, 80, 14
+    CONTROL         "Outbound Rules", IDC_OUTBOUND_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 100, 235, 80, 14
+    CTEXT           "Adobe Software Detection and Firewall Control", IDC_TITLE_LABEL, 7, 7, 386, 15, SS_CENTERIMAGE
+    CONTROL         "", IDC_PROGRESS_BAR, "msctls_progress32", WS_BORDER, 7, 255, 386, 14
+    LTEXT           "Ready", IDC_STATUS_LABEL, 7, 275, 386, 14
+    PUSHBUTTON      "Unselect All", IDC_UNSELECT_ALL_BUTTON, 315, 235, 80, 14
+END
